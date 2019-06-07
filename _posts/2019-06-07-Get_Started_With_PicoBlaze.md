@@ -17,13 +17,13 @@ tags:
 # OVERVIEW
   This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
 
+  
 
 ### STEP 1: Prepare Materials for Your Design
 
 Two software in this tutorial were used to develop the FPGA design: ISE and Adept. ISE is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using Adept.
 
-To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze download] (https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
-
+To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze download](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-e65e5cda50f38cef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
