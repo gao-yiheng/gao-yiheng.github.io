@@ -1,18 +1,20 @@
 ---
 layout:     post
-title:      Get Started with PicoBlaze
+title:      PART I: Get Started with PicoBlaze
 subtitle:   Run PicoBlaze on Nexys3 (Spartan-6) to Light 8 LEDs
 date:       2019-06-07
 author:     yg
-header-img: img/post-bg-start-pico.jpg
+header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - PicoBlaze, FPGA, Spartan-6
+    - PicoBlaze
+    - FPGA
+    - Spartan-6
 ---
 
 
 # Overview
-This is a series tutorial that aims to teaching how to use PicoBlaze and FPGA. This is the first part that introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
+  This is a series tutorial that aims to teaching how to use PicoBlaze and FPGA. This is the first part that introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
 
 
 # 快速开始
