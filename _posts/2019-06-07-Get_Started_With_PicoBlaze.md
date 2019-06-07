@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      PartI - Get Started with PicoBlaze
+title:      Part I - Get Started with PicoBlaze
 subtitle:   Run PicoBlaze on Nexys3 (Spartan-6) to Light 8 LEDs
 date:       2019-06-07
 author:     yg
@@ -10,24 +10,29 @@ tags:
     - PicoBlaze
     - FPGA
     - Spartan-6
+    - Nexys3
 ---
 
 
-# Overview
-  This is a series tutorial that aims to teaching how to use PicoBlaze and FPGA. This is the first part that introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
+# OVERVIEW
+  This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
 
 
-# 快速开始
+### STEP 1: Prepare Materials for Your Design
 
-### 从注册一个Github账号开始
+Two software in this tutorial were used to develop the FPGA design: ISE and Adept. ISE is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using Adept.
 
-我采用的搭建博客的方式是使用 [GitHub Pages](https://pages.github.com/) + [jekyll](http://jekyll.com.cn/) 的方式。
+To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze download] (https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
 
-要使用 GitHub Pages，首先你要注册一个[GitHub](https://github.com/)账号，GitHub 是全球最大的同性交友网站(吐槽下程序员~)，你值得拥有。
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-e65e5cda50f38cef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 拉取我的博客模板
+There are several useful things in the zip file for your design. “KCPSM6_User_Guide” includes general design flow with PicoBlaze (p6-13) and explanations of each instruction and so on. “kcpsm6.exe” is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze components and its connections can be found in user guide page 8. 
+
+This tutorial would select Verilog as Hardware Description Language and therefore, move into Verilog folder in zip file. In this folder, “kcpsm6.v” is the source code for PicoBlaze (also called CDPSM6) while “ROM_form.v” would be used with “kcpsm6.exe” to generate your memory space. “kcpsm6_design_template.v” is also helpful though it is not a Verilog file that can be simulated or synthesis directly. 
+
+
+### STEP 2: Write Your First Assembly Code with PicoBlaze
 
 注册完成后搜索 `qiubaiying.github.io` 进入[我的仓库](https://github.com/qiubaiying/qiubaiying.github.io)
 
