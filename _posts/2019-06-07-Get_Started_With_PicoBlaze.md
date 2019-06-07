@@ -21,11 +21,11 @@ tags:
 
 ### STEP 1: Prepare Materials for Your Design
 
-Two software in this tutorial were used to develop the FPGA design: ISE and Adept. ISE is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using Adept.
+Two software in this tutorial were used to develop the FPGA design: **ISE** and **Adept**. ISE is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using Adept.
 
 To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
 
-![](http://upload-images.jianshu.io/upload_images/2178672-e65e5cda50f38cef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://github.com/yg9120/yg9120.github.io/blob/master/img/post_img/Pico_start_part1_fig1.1.jpg)
 
 There are several useful things in the zip file for your design. `KCPSM6_User_Guide` includes general design flow with PicoBlaze (p6-13) and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze components and its connections can be found in user guide page 8. 
 
