@@ -11,7 +11,7 @@ github_repo: "https://github.com/yg9120/yg9120.github.io.git" # you code reposit
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you."
+sidebar-about-description: ""
 sidebar-avatar: /img/crayon_shinchan.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -101,9 +101,9 @@ friends: [
     {
         title: "PicoBlaze",
         href: "https://www.xilinx.com/products/intellectual-property/picoblaze.html"
-#    },{
-#        title: "简书·BY",
-#        href: "http://www.jianshu.com/u/e71990ada2fd"
+    },{
+        title: "Verilog Tutorial",
+        href: "https://hdlbits.01xz.net/wiki/Problem_sets"
 #    },{
 #        title: "Apple",
 #        href: "https://apple.com"
