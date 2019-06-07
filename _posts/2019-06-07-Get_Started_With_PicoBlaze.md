@@ -25,7 +25,7 @@ Two software in this tutorial were used to develop the FPGA design: **ISE** and 
 
 To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
 
-![](https://github.com/yg9120/yg9120.github.io/blob/master/img/post_img/Pico_start_part1_fig1.1.jpg)
+![](https://imgchr.com/i/VBETkF)
 
 There are several useful things in the zip file for your design. `KCPSM6_User_Guide` includes general design flow with PicoBlaze (p6-13) and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze components and its connections can be found in user guide page 8. 
 
