@@ -21,7 +21,6 @@ RSS: false
 # weibo_username:     username
 #zhihu_username:     username
 github_username:    yg9120
-linkedin_username:  
 #facebook_username:  username
 #jianshu_username:   username
 #twitter_username:   username
@@ -87,7 +86,7 @@ kramdown:
 
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+featured-condition-size: 0              # 相同标签数量大于这个数，才会出现在首页
 
 
 
