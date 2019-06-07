@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      PART I: Get Started with PicoBlaze
+title:      PartI - Get Started with PicoBlaze
 subtitle:   Run PicoBlaze on Nexys3 (Spartan-6) to Light 8 LEDs
 date:       2019-06-07
 author:     yg
