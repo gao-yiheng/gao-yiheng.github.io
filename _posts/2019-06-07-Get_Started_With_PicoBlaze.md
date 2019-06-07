@@ -23,96 +23,67 @@ tags:
 
 Two software in this tutorial were used to develop the FPGA design: ISE and Adept. ISE is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using Adept.
 
-To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze download](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
+To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the “KCPSM6 ...” zip file. 
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-e65e5cda50f38cef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-There are several useful things in the zip file for your design. “KCPSM6_User_Guide” includes general design flow with PicoBlaze (p6-13) and explanations of each instruction and so on. “kcpsm6.exe” is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze components and its connections can be found in user guide page 8. 
+There are several useful things in the zip file for your design. `KCPSM6_User_Guide` includes general design flow with PicoBlaze (p6-13) and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze components and its connections can be found in user guide page 8. 
 
-This tutorial would select Verilog as Hardware Description Language and therefore, move into Verilog folder in zip file. In this folder, “kcpsm6.v” is the source code for PicoBlaze (also called CDPSM6) while “ROM_form.v” would be used with “kcpsm6.exe” to generate your memory space. “kcpsm6_design_template.v” is also helpful though it is not a Verilog file that can be simulated or synthesis directly. 
+This tutorial would select **Verilog** as Hardware Description Language and therefore, move into `Verilog folder` in zip file. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called CDPSM6) while `ROM_form.v` would be used with `kcpsm6.exe` to generate your memory space. `kcpsm6_design_template.v` is also helpful though it is not a Verilog file that can be simulated or synthesis directly. 
 
 
 ### STEP 2: Write Your First Assembly Code with PicoBlaze
 
-注册完成后搜索 `qiubaiying.github.io` 进入[我的仓库](https://github.com/qiubaiying/qiubaiying.github.io)
+Write the following assembly code with any text editor (e.g. Notepad) and save as `xxx.psm` file. The code would light LEDs with the position in 7, 5, 2, 1, 0.
+
+```
+CONSTANT Acheck, 10100111’b
+CONSTANT LED_PORT, 02
+
+Start: LOAD s0, Acheck
+     OUTPUT s0, LED_PORT
+
+JUMP start
+```
+
+Use “kcpsm6.exe” to translate psm file into Verilog file (Tips: “ROM_form.vhd” will generate VHDL file. If you are doing with Verilog, use “ROM_form.v” in verilog folder). After compilation, “xxx.v” will be created. In addition, “xxx.log” stores detailed information about the assembly code and its corresponding binary code. “xxx.hex” is the machine code represented in hex.
 
 
-![](http://upload-images.jianshu.io/upload_images/2178672-1b234fb8549e58aa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### STEP 3: Create the Hardware Part
 
-点击右上角的 **Fork** 将我的仓库拉倒你的账号下
+Open “ise” and create a new project for the design. Nexys3 uses Spartan-6 FPGA with device XC6SLX16 and CS324 package. Set “Preferred Language” to “Verilog”.
 
-稍等一下，点击刷新，你会看到**Fork**了成功的页面
-
-![](http://upload-images.jianshu.io/upload_images/2178672-b2347768a1f2d993.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-### 修改仓库名
-
-点击**settings**进入设置
+After creating the project, import source files into the project. Right click and select “Add Source” to import PicoBlaze and memory space into the project. Then create a new Verilog file to connect PicoBlaze and memory space together and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-f47b7e4802de6a34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<p id = "Rename"></p>
-修改仓库名为 `你的Github账号名.github.io`，然后 Rename
-
 ![](http://upload-images.jianshu.io/upload_images/2178672-ca3d843e526cdd5b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这时你在在浏览器中输入 `你的Github账号名.github.io` 例如:`baiyingqiu.github.io`
-
-你将会看到如下界面
+Copy paste the content in design template file to your top module file (new source file). The design template file includes instantiated PicoBlaze (KCPSM6) and memory space. You will need to change the name of memory space and set “.C_FAMILY” to “S6” and “.C_RAM_SIZE_KWORDS” to “1” as Fig 3.3 shows.
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-96b5db55df9db422.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-说明已经成功一半了😀。。。当然，还需要修改博客的配置才能变成你的博客。
+The rest of part in design template file gives an example of how to connect input/output port with PicoBlaze and so on. Modify them with your need. In the example, no read input is needed but only output data and therefore the code can be modified as follows.
 
-若是出现
 
-![](http://upload-images.jianshu.io/upload_images/2178672-cfd55a22902a9d2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### STEP 4: Simulation with Isim
 
-则需要 [检查一下你的仓库名是否正确](#Rename)
+Then you will need to run simulation tools to make sure that the design works correctly. Firstly, you will need to create a testbench as Fig 3.2 shows and generates the input signals your top module needed (Fig 4.1).
 
-### 整个网站结构
-
-修改Blog前我们来看看Jekyll 网站的基础结构，当然我们的网站比这个复杂。
-
-```
-├── _config.yml
-├── _drafts
-|   ├── begin-with-the-crazy-ideas.textile
-|   └── on-simplicity-in-technology.markdown
-├── _includes
-|   ├── footer.html
-|   └── header.html
-├── _layouts
-|   ├── default.html
-|   └── post.html
-├── _posts
-|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   └── 2009-04-26-barcamp-boston-4-roundup.textile
-├── _data
-|   └── members.yml
-├── _site
-├── img
-└── index.html
-```
-
-很复杂看不懂是不是，不要紧，你只要记住其中几个OK了
+Select “View” as “Simulation” and run simulation. Result is shown in Fig 4.3. As we can see, output (led) would always generates ‘10100111’ which is the same as we expected. ‘00000000’ is due to the fact that it takes time for processor to calculate the output result. Each instruction in PicoBlaze takes 2 clock cycle to finish.
 
 - `_config.yml` 全局配置文件
 - `_posts`	放置博客文章的文件夹
 - `img`	存放图片的文件夹
 
-其他的想继续深究可以[看这里](http://jekyll.com.cn/docs/structure/)
 
+### STEP 5: Generate Programming File and Download into FPGA Board
 
-
-### 修改博客配置
-
-来到你的仓库，找到`_config.yml`文件,这是网站的全局配置文件。
+Once your design works with simulation, you can generate a programming file and download it into the board. Select “Implementation” view and import “xxx.ucf” file (e.g. “Nexys3_master.ucf” in the example). This file helps you connecting your defined port with the port on the board. Modify .ucf file as Fig 5.1 shows. 
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-c23d4a5d67c88084.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-点击修改
+Double click “Generate Programming File” and in the end, synthesis tool will generates “.bit” file. Connect the board with USB cable and open “Adept”. Select the bit file and click “Program” to download the file into Nexys3 board. LED will light as you desired.
 
 ![](http://upload-images.jianshu.io/upload_images/2178672-b37268df7a7852ca.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
