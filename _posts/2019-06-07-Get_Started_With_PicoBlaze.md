@@ -55,22 +55,29 @@ Open “ise” and create a new project for the design. Nexys3 uses Spartan-6 FP
 
 After creating the project, import source files into the project. Right click and select “Add Source” to import PicoBlaze and memory space into the project. Then create a new Verilog file to connect PicoBlaze and memory space together and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
 
-![](http://upload-images.jianshu.io/upload_images/2178672-f47b7e4802de6a34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![VBVk6I.jpg](https://s2.ax1x.com/2019/06/08/VBVk6I.jpg)
 
-![](http://upload-images.jianshu.io/upload_images/2178672-ca3d843e526cdd5b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![VBVe78.jpg](https://s2.ax1x.com/2019/06/08/VBVe78.jpg)
 
 Copy paste the content in design template file to your top module file (new source file). The design template file includes instantiated PicoBlaze (KCPSM6) and memory space. You will need to change the name of memory space and set “.C_FAMILY” to “S6” and “.C_RAM_SIZE_KWORDS” to “1” as Fig 3.3 shows.
 
-![](http://upload-images.jianshu.io/upload_images/2178672-96b5db55df9db422.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![VBV9te.jpg](https://s2.ax1x.com/2019/06/08/VBV9te.jpg)
 
 The rest of part in design template file gives an example of how to connect input/output port with PicoBlaze and so on. Modify them with your need. In the example, no read input is needed but only output data and therefore the code can be modified as follows.
+
+![VBVCfH.jpg](https://s2.ax1x.com/2019/06/08/VBVCfH.jpg)
 
 
 ### STEP 4: Simulation with Isim
 
 Then you will need to run simulation tools to make sure that the design works correctly. Firstly, you will need to create a testbench as Fig 3.2 shows and generates the input signals your top module needed (Fig 4.1).
 
+![VBVpkD.jpg](https://s2.ax1x.com/2019/06/08/VBVpkD.jpg)
+
 Select “View” as “Simulation” and run simulation. Result is shown in Fig 4.3. As we can see, output (led) would always generates ‘10100111’ which is the same as we expected. ‘00000000’ is due to the fact that it takes time for processor to calculate the output result. Each instruction in PicoBlaze takes 2 clock cycle to finish.
+
+![VBVipd.jpg](https://s2.ax1x.com/2019/06/08/VBVipd.jpg)
+![VBVZ0f.jpg](https://s2.ax1x.com/2019/06/08/VBVZ0f.jpg)
 
 - `_config.yml` 全局配置文件
 - `_posts`	放置博客文章的文件夹
@@ -81,17 +88,11 @@ Select “View” as “Simulation” and run simulation. Result is shown in Fig
 
 Once your design works with simulation, you can generate a programming file and download it into the board. Select “Implementation” view and import “xxx.ucf” file (e.g. “Nexys3_master.ucf” in the example). This file helps you connecting your defined port with the port on the board. Modify .ucf file as Fig 5.1 shows. 
 
-![](http://upload-images.jianshu.io/upload_images/2178672-c23d4a5d67c88084.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![VBVF1A.jpg](https://s2.ax1x.com/2019/06/08/VBVF1A.jpg)
+![VBVAXt.jpg](https://s2.ax1x.com/2019/06/08/VBVAXt.jpg)
+![VBVVnP.jpg](https://s2.ax1x.com/2019/06/08/VBVVnP.jpg)
 
 Double click “Generate Programming File” and in the end, synthesis tool will generates “.bit” file. Connect the board with USB cable and open “Adept”. Select the bit file and click “Program” to download the file into Nexys3 board. LED will light as you desired.
-
-![](http://upload-images.jianshu.io/upload_images/2178672-b37268df7a7852ca.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-然后编辑`_config.yml`的内容
-
-![](http://upload-images.jianshu.io/upload_images/2178672-0c8750f5a18dbe03.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-接下来我们来详细说说以下配置文件的内容：
 
 #### 基础设置
 
