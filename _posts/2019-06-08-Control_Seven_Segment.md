@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Nexys3 Part II - Control Seven-Segment
-subtitle:   Display 4 Seven-Segment with Both Software and Hardware Method
+subtitle:   Display 4-digit Seven-Segment with Both Software and Hardware Method
 date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
@@ -14,92 +14,54 @@ tags:
 
 
 ### OVERVIEW
-This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: **software** and **hardware**. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
+This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: `software` and `hardware`. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
 
 
-### STEP 1: Prepare Materials for Your Design
+### STEP 1: Introduction of Seven-Segment
 
-Two software in this tutorial were used to develop the FPGA design: `ISE` and `Adept`. **ISE** is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using **Adept**.
+The Nexys3 board contains a four-digit `common anode` seven-segment LED display. Each of the four digits is composed of seven segments arranged in a **“figure 8”** pattern, with an LED embedded in each segment [1] as the picture shows. 
 
-To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the `KCPSM6 ...` zip file. 
+![VB4XFJ.jpg](https://s2.ax1x.com/2019/06/08/VB4XFJ.jpg)
 
-![VBETkF.jpg](https://s2.ax1x.com/2019/06/08/VBETkF.jpg)
+There are two types of LED 7-segment display: `Common Cathode (CC)` and `Common Anode (CA)`. In CA, all the **anode connections of the LED segments are joined together to logic “1”** as the picture shows. The individual segments are **illuminated by applying a ground, logic “0” or “LOW”** signal via a suitable current limiting resistor to the Cathode of the specific segment (a-g) [2]. More details for 7-segment display please refers to [2]. 
 
-There are several **useful things** in the zip file for your design. `KCPSM6_User_Guide` includes **general design flow** with PicoBlaze **(p6-13)** and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze **components and its connections** can be found in **user guide page 8**. 
+![VB4Lo4.jpg](https://s2.ax1x.com/2019/06/08/VB4Lo4.jpg)
 
-This tutorial would select **Verilog** as Hardware Description Language and therefore, move into `Verilog folder` in zip file. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called `CDPSM6`) while `ROM_form.v` would be used with `kcpsm6.exe` to generate your memory space. `kcpsm6_design_template.v` is also helpful though it is only a template file, not a Verilog file that can be simulated or synthesis directly. 
+To drive `CA` seven-segment, put “0” to I/O port to light LED. For example, if you want to display `1` as the picture shows, the output port for `abcdefg` is `1001111`. 
 
+![VB4qwF.jpg](https://s2.ax1x.com/2019/06/08/VB4qwF.jpg)
 
-### STEP 2: Write Your First Assembly Code with PicoBlaze
+The truth table is for displaying 1 to 9 with `CA` 7-segment.
 
-Write the following assembly code with any text editor (e.g. Notepad) and save as `xxx.psm` file. The code would light LEDs with the position in 7, 5, 2, 1, 0.
-
-```
-CONSTANT Acheck, 10100111’b
-CONSTANT LED_PORT, 02
-
-Start: LOAD s0, Acheck
-     OUTPUT s0, LED_PORT
-
-JUMP start
-```
-
-Use `kcpsm6.exe` to translate `.psm` into `.v` (**Tips:** `ROM_form.vhd` will generate **VHDL** file. If you are doing with **Verilog**, use `ROM_form.v` in `verilog folder`). After compilation, `xxx.v` will be created. In addition, `xxx.log` stores detailed information about the assembly code and its corresponding binary code. `xxx.hex` is the machine code represented in hex.
+![VB4jY9.jpg](https://s2.ax1x.com/2019/06/08/VB4jY9.jpg)
 
 
-### STEP 3: Create the Hardware Part
 
-Open `ise`(ise_14.7 as example) and create a new project for the design. **Nexys3** uses `Spartan-6` FPGA with device `XC6SLX16` and `CS324` package. Set `Preferred Language` to `Verilog`.
+### STEP 2: Display 4-digit Number in Software
 
-After creating the project, **import source files into the project**. **Right click** and select `Add Source` to import PicoBlaze and memory space into the project. Then create a new `Verilog file` to **connect PicoBlaze and memory space** together and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
+Nexys3 provides 4 seven-segment, namely, 4 digits can display at the same time (see Fig 1.1). As we said before, each seven-segment needs 8-bit data to fully display, which means 4x8=32-bit are needed to display 4 seven-segment. We do not have so much I/O pins for seven-segment. To overcome this defect, Nexys3 share the same data bus (8 LEDs, from A to DP as Table 1. shows) for 4 seven-segment. Therefore, it’s not easy to display 4 digits at the same time. To make sharing bus work, Nexys3 provides four triodes to enable each seven-segment. To display multi-digits instead of only one digit, you will need to enable each triode one by one and send corresponding data to CA to DP port. But pay attention, delay for short time after enable a triode will need to guarantee triode works correctly. Because data for displaying numbers has no regular pattern, you cannot calculate them but can use look-up table. 
 
-![VBVe78.jpg](https://s2.ax1x.com/2019/06/08/VBVe78.jpg)
+Now let’s do some fun thing with seven-segment! Suppose we want to read 8-bit input from slide switches and split 8-bit input into two 4-bit numbers, add them and display numbers and add result on seven-segment in hex. Fig 2.1 shows the flow chart with assembly way.
 
-![VBV9te.jpg](https://s2.ax1x.com/2019/06/08/VBV9te.jpg)
-
-Copy paste the content in `design template file` to your `top module file` (new source file). The `design template file` includes **instantiated PicoBlaze (KCPSM6)** and **memory space**. You will need to change the **name of memory space** and set `.C_FAMILY` to `S6` and `.C_RAM_SIZE_KWORDS` to `1` following picture shows.
-
-![VBVCfH.jpg](https://s2.ax1x.com/2019/06/08/VBVCfH.jpg)
-
-The rest of part in design template file gives an example of how to connect input/output port with PicoBlaze and so on. Modify them with your need. In the example, no read input is needed but only output data and therefore the code can be modified as follows.
-
-![VBVpkD.jpg](https://s2.ax1x.com/2019/06/08/VBVpkD.jpg)
+![VB4beU.jpg](https://s2.ax1x.com/2019/06/08/VB4beU.jpg)
 
 
-### STEP 4: Simulation with Isim
+### STEP 3: Display 4 Digit Numbers in Verilog
 
-Then you will need to run **simulation tools** `Isim` to make sure that the design works correctly. Firstly, you will need to create a `testbench` as following picture shows and **generates the input signals** your top module needed.
+Last step discusses how to display seven-segment with software, this part will focus on displaying seven-segment in Verilog. We will use task in last step to show how to control sevn-seg in Verilog code. Add result will be output using out_port[7:0], using bcd_display module transferring 8-bit result into decimal and display on seven-seg in Nexys3 as Fig 3.1 shows.
 
-![VBVipd.jpg](https://s2.ax1x.com/2019/06/08/VBVipd.jpg)
+![VB59OK.jpg](https://s2.ax1x.com/2019/06/08/VB59OK.jpg)
 
-Select `View` as `Simulation` and run simulation.
+![VB5PeO.jpg](https://s2.ax1x.com/2019/06/08/VB5PeO.jpg)
 
-![VBVZ0f.jpg](https://s2.ax1x.com/2019/06/08/VBVZ0f.jpg)
-
-Result is shown. As we can see, output (led) would always generates `10100111` which is the same as we expected. `00000000` is due to the fact that it takes time for processor to calculate the output result. Each instruction in PicoBlaze takes `2 clock cycle` to finish.
-
-![VBVF1A.jpg](https://s2.ax1x.com/2019/06/08/VBVF1A.jpg)
-
-
-### STEP 5: Generate Programming File and Download into FPGA Board
-
-Once your design works correctly with simulation, you can generate a `programming file` and **download** it into the board. Select `Implementation` view and import `xxx.ucf` file (e.g. `Nexys3_master.ucf` in the example). This file helps you connecting your defined port with the port on the board. Modify `.ucf` file the picture shows. 
-
-![VBVAXt.jpg](https://s2.ax1x.com/2019/06/08/VBVAXt.jpg)
-
-![VBVVnP.jpg](https://s2.ax1x.com/2019/06/08/VBVVnP.jpg)
-
-**Double click** `Generate Programming File` and in the end, synthesis tool will generates `.bit` file. Connect the board with USB cable and open `Adept`. Select the `bit file` and click `Program` to download the file into Nexys3 board. LED will light as you desired.
-
-![VBVgAO.jpg](https://s2.ax1x.com/2019/06/08/VBVgAO.jpg)
-
-![VBV2ND.jpg](https://s2.ax1x.com/2019/06/08/VBV2ND.jpg)
+Note: Code for Decode data into decimal comes from [3], code for BCD_Display module based on [3]
 
 
 ### REF
 
-[1] KCPSM6_User_Guide_30Sept14.pdf
+[1]https://reference.digilentinc.com/reference/programmable-logic/nexys-3/reference-manual
 
-[2] Nexys 3 Reference Manual
+[2] https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html
 
-[3] https://www.youtube.com/watch?v=7tRkpudwL2g
+[3] http://bits.usc.edu/ee209/labs.html
+
