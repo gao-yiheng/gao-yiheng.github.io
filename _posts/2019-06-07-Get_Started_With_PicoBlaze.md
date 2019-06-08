@@ -16,7 +16,6 @@ tags:
 
 # OVERVIEW
 This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
-
 Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
 
 
@@ -99,10 +98,9 @@ Once your design works correctly with simulation, you can generate a `programmin
 ![VBV2ND.jpg](https://s2.ax1x.com/2019/06/08/VBV2ND.jpg)
 
 
-### REF
+# REF
 
 [1] KCPSM6_User_Guide_30Sept14.pdf
-
 [2] Nexys 3 Reference Manual
 
 [3] https://www.youtube.com/watch?v=7tRkpudwL2g
