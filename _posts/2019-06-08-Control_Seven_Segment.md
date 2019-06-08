@@ -1,21 +1,20 @@
 ---
 layout:     post
-title:      Nexys3 Part I - Get Started with PicoBlaze
-subtitle:   Run PicoBlaze on Nexys3 (Spartan-6) to Light 8 LEDs
-date:       2019-06-07
+title:      Nexys3 Part II - Control Seven-Segment
+subtitle:   Display 4 Seven-Segment with Both Software and Hardware Method
+date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - PicoBlaze
+    - Verilog
     - FPGA
-    - Spartan-6
     - Nexys3
 ---
 
 
 ### OVERVIEW
-This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board. Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
+This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: `software` and `hardware`. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
 
 
 ### STEP 1: Prepare Materials for Your Design
