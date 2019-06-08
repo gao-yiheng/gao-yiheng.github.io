@@ -14,9 +14,8 @@ tags:
 ---
 
 
-# OVERVIEW
-This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board.
-Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
+### OVERVIEW
+This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board. Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
 
 
 ### STEP 1: Prepare Materials for Your Design
@@ -29,7 +28,7 @@ To begin with, design files related with PicoBlaze are needed. Go to the [PicoBl
 
 There are several **useful things** in the zip file for your design. `KCPSM6_User_Guide` includes **general design flow** with PicoBlaze **(p6-13)** and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze **components and its connections** can be found in **user guide page 8**. 
 
-This tutorial would select **Verilog** as Hardware Description Language and therefore, move into `Verilog folder` in zip file. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called **CDPSM6**) while `ROM_form.v` would be used with `kcpsm6.exe` to generate your memory space. `kcpsm6_design_template.v` is also helpful though it is only a template file, not a Verilog file that can be simulated or synthesis directly. 
+This tutorial would select **Verilog** as Hardware Description Language and therefore, move into `Verilog folder` in zip file. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called `CDPSM6`) while `ROM_form.v` would be used with `kcpsm6.exe` to generate your memory space. `kcpsm6_design_template.v` is also helpful though it is only a template file, not a Verilog file that can be simulated or synthesis directly. 
 
 
 ### STEP 2: Write Your First Assembly Code with PicoBlaze
@@ -51,7 +50,7 @@ Use `kcpsm6.exe` to translate `.psm` into `.v` (**Tips:** `ROM_form.vhd` will ge
 
 ### STEP 3: Create the Hardware Part
 
-Open `ise`(ise_14.7 as example) and create a new project for the design. **Nexys3** uses **Spartan-6** FPGA with device **XC6SLX16** and **CS324** package. Set `Preferred Language` to `Verilog`.
+Open `ise`(ise_14.7 as example) and create a new project for the design. **Nexys3** uses `Spartan-6` FPGA with device `XC6SLX16` and `CS324` package. Set `Preferred Language` to `Verilog`.
 
 After creating the project, **import source files into the project**. **Right click** and select `Add Source` to import PicoBlaze and memory space into the project. Then create a new `Verilog file` to **connect PicoBlaze and memory space** together and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
 
@@ -98,9 +97,10 @@ Once your design works correctly with simulation, you can generate a `programmin
 ![VBV2ND.jpg](https://s2.ax1x.com/2019/06/08/VBV2ND.jpg)
 
 
-# REF
+### REF
 
 [1] KCPSM6_User_Guide_30Sept14.pdf
+
 [2] Nexys 3 Reference Manual
 
 [3] https://www.youtube.com/watch?v=7tRkpudwL2g
