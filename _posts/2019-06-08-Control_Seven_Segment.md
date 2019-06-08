@@ -2,7 +2,7 @@
 layout:     post
 title:      Nexys3 Part II - Control Seven-Segment
 subtitle:   Display 4-digit Seven-Segment with Both Software and Hardware Method
-date:       2019-06-07
+date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true

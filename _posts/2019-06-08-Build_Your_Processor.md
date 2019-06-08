@@ -2,7 +2,7 @@
 layout:     post
 title:      Nexys3 Part III - Build a Microprocessor
 subtitle:   Build Your Own Processor with Multi-Cycle Machine
-date:       2019-06-06
+date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
