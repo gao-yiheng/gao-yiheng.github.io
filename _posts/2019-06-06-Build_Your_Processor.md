@@ -21,7 +21,7 @@ In previous parts, we use PicoBlaze as micro-controller to implement our design.
 
 As mentioned before, the processor is very simple and therefore only supports **limited number of instructions**. The following picture shows the `instruction set` the processor supports and how it coded.
 
-![VDjUER.jpg](https://s2.ax1x.com/2019/06/09/VDjUER.jpg)
+![VDjRUI.jpg](https://s2.ax1x.com/2019/06/09/VDjRUI.jpg)
 
 An instruction is `18-bit` long. First `6-bit` are `op code` to **indicate the function of an instruction**. The **register file** has `16` registers and therefore, requires `4-bit` to **decode the register**. The **length of a register** is `8-bit` long so that **instance number size** could be `8-bit`.
 
@@ -65,9 +65,9 @@ gen_fib: LOAD s1, 00            ; f1 = 0
 calculate: SUB s0, 01              
 		   JUMP Z, out_result      ; while (n-- > 0)
 		   
-		   LOAD s3, s2            ; temp = f2
-		   ADD s2, s1             ; f2 = f2 + f1
-		   LOAD s1, s3            ; f1 = temp
+		   LOAD s3, s2             ; temp = f2
+		   ADD s2, s1              ; f2 = f2 + f1
+		   LOAD s1, s3             ; f1 = temp
 		   JUMP calculate
 		   
 out_result: OUTPUT s2, LED_PORT
