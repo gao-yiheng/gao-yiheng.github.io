@@ -23,7 +23,7 @@ The Nexys3 board contains a four-digit `common anode` seven-segment LED display.
 
 ![VB4XFJ.jpg](https://s2.ax1x.com/2019/06/08/VB4XFJ.jpg)
 
-There are two types of LED 7-segment display: `Common Cathode (CC)` and `Common Anode (CA)`. In CA, all the **anode connections of the LED segments are joined together to logic “1”** as the picture shows. The individual segments are **illuminated by applying a ground, logic “0” or “LOW”** signal via a suitable current limiting resistor to the Cathode of the specific segment (a-g). More details for 7-segment display please refers to `REF [2]`. 
+There are two types of LED 7-segment display: `Common Cathode (CC)` and `Common Anode (CA)`. In CA, all the **anode connections of the LED segments are joined together to logic “1”** as the picture shows. The individual segments are **illuminated by applying a ground, logic “0” or “LOW”** signal via a suitable current limiting resistor to the Cathode of the specific segment (a-g). More details for 7-segment display please refers to **REF [2]**. 
 
 ![VB4Lo4.jpg](https://s2.ax1x.com/2019/06/08/VB4Lo4.jpg)
 
@@ -54,12 +54,12 @@ Previous step discusses how to display seven-segment with software, this part wi
 
 ![VB5PeO.jpg](https://s2.ax1x.com/2019/06/08/VB5PeO.jpg)
 
-The code in this step is [here](https://github.com/yg9120/Nexys3/tree/master/LightSevenSegment). Note: Code for Decode data into decimal comes from `REF [3]`, code for `BCD_Display module` based on [3]
+The code in this step is [here](https://github.com/yg9120/Nexys3/tree/master/LightSevenSegment). Note: Code for Decode data into decimal comes from **REF [3]**, code for `BCD_Display module` based on [3]
 
 
 ### REF
 
-[1]https://reference.digilentinc.com/reference/programmable-logic/nexys-3/reference-manual
+[1] https://reference.digilentinc.com/reference/programmable-logic/nexys-3/reference-manual
 
 [2] https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html
 
