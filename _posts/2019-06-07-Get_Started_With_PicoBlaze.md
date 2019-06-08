@@ -92,7 +92,7 @@ Once your design works correctly with simulation, you can generate a `programmin
 
 ![VBVVnP.jpg](https://s2.ax1x.com/2019/06/08/VBVVnP.jpg)
 
-Double click `Generate Programming File` and in the end, synthesis tool will generates `.bit` file. Connect the board with USB cable and open `Adept`. Select the `bit file` and click `Program` to download the file into Nexys3 board. LED will light as you desired.
+**Double click** `Generate Programming File` and in the end, synthesis tool will generates `.bit` file. Connect the board with USB cable and open `Adept`. Select the `bit file` and click `Program` to download the file into Nexys3 board. LED will light as you desired.
 
 ![VBVgAO.jpg](https://s2.ax1x.com/2019/06/08/VBVgAO.jpg)
 
@@ -100,6 +100,9 @@ Double click `Generate Programming File` and in the end, synthesis tool will gen
 
 
 ### REF
+
 [1] KCPSM6_User_Guide_30Sept14.pdf
+
 [2] Nexys 3 Reference Manual
+
 [3] https://www.youtube.com/watch?v=7tRkpudwL2g
