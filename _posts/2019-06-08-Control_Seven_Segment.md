@@ -14,7 +14,7 @@ tags:
 
 
 ### OVERVIEW
-This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: `software` and `hardware`. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
+This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: **software** and **hardware**. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
 
 
 ### STEP 1: Prepare Materials for Your Design
