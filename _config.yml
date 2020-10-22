@@ -97,7 +97,7 @@ service-worker: true
 
 
 # Friends
-Reference Page: [
+Friends: [
     {
         title: "PicoBlaze",
         href: "https://www.xilinx.com/products/intellectual-property/picoblaze.html"
