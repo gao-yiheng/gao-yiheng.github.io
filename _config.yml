@@ -97,18 +97,18 @@ service-worker: true
 
 
 # Friends
-Friends: [
-    {
-        title: "PicoBlaze",
-        href: "https://www.xilinx.com/products/intellectual-property/picoblaze.html"
-    },{
-        title: "Verilog Tutorial",
-        href: "https://hdlbits.01xz.net/wiki/Problem_sets"
+friends: [
+#    {
+#        title: "PicoBlaze",
+#        href: "https://www.xilinx.com/products/intellectual-property/picoblaze.html"
+#    },{
+#        title: "Verilog Tutorial",
+#        href: "https://hdlbits.01xz.net/wiki/Problem_sets"
 #    },{
 #        title: "Apple",
 #        href: "https://apple.com"
 #    },{
 #        title: "Apple Developer",
 #        href: "https://developer.apple.com/"
-    }
+#    }
 ]
