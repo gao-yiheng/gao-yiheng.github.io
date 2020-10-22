@@ -2,9 +2,9 @@
 title: YG's Blog
 SEOTitle: YG's Blog
 header-img: img/post-bg-keybord.jpg
-email: yhgao.2016@gmail.com
-description: "My blog for technology"
-keyword: "Verilog, PicoBlaze, FPGA, EE, CE"
+# email: yhgao.2016@gmail.com
+description: ""
+keyword: ""
 url: "http://yg9120.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/yg9120/yg9120.github.io.git" # you code repository
@@ -20,7 +20,7 @@ sidebar-avatar: /img/crayon_shinchan.jpg      # use absolute URL, seeing it's us
 RSS: false
 # weibo_username:     username
 #zhihu_username:     username
-github_username:    yg9120
+#github_username:    yg9120
 #facebook_username:  username
 #jianshu_username:   username
 #twitter_username:   username
@@ -97,7 +97,7 @@ service-worker: true
 
 
 # Friends
-friends: [
+Reference Page: [
     {
         title: "PicoBlaze",
         href: "https://www.xilinx.com/products/intellectual-property/picoblaze.html"
