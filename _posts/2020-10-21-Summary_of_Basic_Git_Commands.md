@@ -1,13 +1,12 @@
 ---
 layout:     post
-title:      Summary of Git Commands (Commonly Used) (Under Construction)
+title:      Git Command Cheat Sheet (Under Construction)
 subtitle:   
 date:       2020-10-21
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - Knowledge Base
     - Tools
 ---
 
