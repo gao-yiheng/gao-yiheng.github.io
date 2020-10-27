@@ -1,20 +1,19 @@
 ---
 layout:     post
-title:      Nexys3 Part II - Control Seven-Segment
-subtitle:   Display 4-digit Seven-Segment with Both Software and Hardware Method
+title:      FPGA Serial II - Display Seven-Segment
+subtitle:   Control 4-digit Seven-Segment with Both Software and Hardware Method
 date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - Verilog
+    - How To's
     - FPGA
-    - Nexys3
 ---
 
 
 ### OVERVIEW
-This part will focus on another interesting on-board source called 7-segment. Two method will be introduced: `software` and `hardware`. Software method would talk about generating 7-segment control signals with `PicoBlaze` (but no source code provided) while hardware method will focus on controlling 7-segment with `Verilog`.
+This tutorial shows how to control 7-segment on Nexys3. Two method will be introduced: `software` and `hardware`. Software method will generate 7-segment control signals with `PicoBlaze` while hardware method will focus on controlling 7-segment with `Verilog`.
 
 
 ### STEP 1: Introduction of Seven-Segment

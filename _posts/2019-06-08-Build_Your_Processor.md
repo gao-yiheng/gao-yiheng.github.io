@@ -7,8 +7,7 @@ author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - Computer Architecture
-    - Verilog
+    - How To's
     - FPGA
 ---
 

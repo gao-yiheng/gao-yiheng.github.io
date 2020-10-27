@@ -1,39 +1,46 @@
 ---
 layout:     post
-title:      Nexys3 Part I - Get Started with PicoBlaze
-subtitle:   Run PicoBlaze on Nexys3 (Spartan-6) to Light 8 LEDs
+title:      FPGA Serial I - Get Started with PicoBlaze
+subtitle:   Run PicoBlaze on Nexys3 (Spartan-6 FPGA) to Light 8 LEDs
 date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - PicoBlaze
+    - How To's
     - FPGA
-    - Spartan-6
-    - Nexys3
 ---
 
 
 ### OVERVIEW
-This is a series tutorial that aims to teach how to use PicoBlaze in FPGA. The first part will introduce how to get started with PicoBlaze and light 8 LEDs installed in Nexys3 FPGA board. Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
+This tutorial shows how to use Xilinx FPGA (Nexys3 board). In this example, we will run a soft core called PicoBlaze on Nexys3 and then light 8 LEDs. Code for this part is [here](https://github.com/yg9120/Nexys3/tree/master/LightLEDS)
 
 
-### STEP 1: Prepare Materials for Your Design
+### REQUIREMENTS
+```
+**Nexys3:**  FPGA Development Board with Xilinx Spartan-6 FPGA installed
+**ISE:**     IDE tool used to develop FPGA applications
+**Adept:**   Tool to download bit file into FPGA
+**Verilog:** HDL to develop FPGA application
+```
 
-Two software in this tutorial were used to develop the FPGA design: `ISE` and `Adept`. **ISE** is an IDE tool that could simulates and synthesis your design and finally generates a bit file which could be downloaded into FPGA board (Nexys3) using **Adept**.
 
-To begin with, design files related with PicoBlaze are needed. Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the `KCPSM6 ...` zip file. 
+### STEP 1: Download PicoBlaze Source Code
+
+Go to the [PicoBlaze Page](https://www.xilinx.com/products/intellectual-property/picoblaze.html#design) to download the `KCPSM6 ...` zip file. 
 
 ![VBETkF.jpg](https://s2.ax1x.com/2019/06/08/VBETkF.jpg)
 
-There are several **useful things** in the zip file for your design. `KCPSM6_User_Guide` includes **general design flow** with PicoBlaze **(p6-13)** and explanations of each instruction and so on. `kcpsm6.exe` is a compiler that translates the assembly file into machine code which is the format can be accessed by PicoBlaze microprocessor. The PicoBlaze **components and its connections** can be found in **user guide page 8**. 
+**NOTE**: There are several helpful materials in the source code file. For example, `KCPSM6_User_Guide` includes **general design flow** with PicoBlaze **(P6-P13)** and explanations of each instruction and so on. `kcpsm6.exe` is the compiler for PicoBlaze. The **components and its connections** of PicoBlaze can be found in **user guide page 8**. 
 
-This tutorial would select **Verilog** as Hardware Description Language and therefore, move into `Verilog folder` in zip file. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called `CDPSM6`) while `ROM_form.v` would be used with `kcpsm6.exe` to generate your memory space. `kcpsm6_design_template.v` is also helpful though it is only a template file, not a Verilog file that can be simulated or synthesis directly. 
+After downloaded, open zip file and move into `Verilog folder`. In this folder, `kcpsm6.v` is the source code for PicoBlaze (also called `CDPSM6`). `ROM_form.v` would be used by `kcpsm6.exe` to generate the memory space. `kcpsm6_design_template.v` is also helpful even though it is only a template file. This is not a Verilog file that can be simulated or synthesis directly. 
 
 
-### STEP 2: Write Your First Assembly Code with PicoBlaze
+### STEP 2: Write Assembly Code
 
-Write the following assembly code with any text editor (e.g. Notepad) and save as `xxx.psm` file. The code would light LEDs with the position in 7, 5, 2, 1, 0.
+The following instructions will light LEDs on Nexys3 with the position in 7, 5, 2, 1, 0. Edit and save them as `xxx.psm` file.
+
+**NOTE: ** PicoBlaze instruction set can be found in `KCPSM6_User_Guide`
 
 ```
 CONSTANT Acheck, 10100111’b
@@ -45,52 +52,58 @@ Start: LOAD s0, Acheck
 JUMP start
 ```
 
-Use `kcpsm6.exe` to translate `.psm` into `.v` (**Tips:** `ROM_form.vhd` will generate **VHDL** file. If you are doing with **Verilog**, use `ROM_form.v` in `verilog folder`). After compilation, `xxx.v` will be created. In addition, `xxx.log` stores detailed information about the assembly code and its corresponding binary code. `xxx.hex` is the machine code represented in hex.
+Run `kcpsm6.exe` to translate `.psm` into `.v` (**NOTE:** `ROM_form.vhd` will generate **VHDL** file. If you are using with **Verilog**, use `ROM_form.v` in `verilog folder`).
+
+After compilation, `xxx.v` will be created. In addition, `xxx.log` stores detailed information about the assembly code and its corresponding binary code. `xxx.hex` is the machine code represented in hex.
 
 
-### STEP 3: Create the Hardware Part
+### STEP 3: Create New Project in IDE
 
-Open `ise`(ise_14.7 as example) and create a new project for the design. **Nexys3** uses `Spartan-6` FPGA with device `XC6SLX16` and `CS324` package. Set `Preferred Language` to `Verilog`.
+Firstly, Open `ise`(ise_14.7 in this example) and create a new project. Select `Spartan-6` FPGA and `XC6SLX16`, `CS324` package. Set `Preferred Language` to `Verilog`.
 
-After creating the project, **import source files into the project**. **Right click** and select `Add Source` to import PicoBlaze and memory space into the project. Then create a new `Verilog file` to **connect PicoBlaze and memory space** together and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
+After creating the project, **import source files into the project**: **Right click** and select `Add Source` to import PicoBlaze and memory into the project. Then create a new `Verilog file` to connect PicoBlaze and memory space and implement other hardware part (e.g. input & output, control 7-seg with hardware). 
 
 ![VBVe78.jpg](https://s2.ax1x.com/2019/06/08/VBVe78.jpg)
 
 ![VBV9te.jpg](https://s2.ax1x.com/2019/06/08/VBV9te.jpg)
 
-Copy paste the content in `design template file` to your `top module file` (new source file). The `design template file` includes **instantiated PicoBlaze (KCPSM6)** and **memory space**. You will need to change the **name of memory space** and set `.C_FAMILY` to `S6` and `.C_RAM_SIZE_KWORDS` to `1` following picture shows.
+Copy paste the content in `design template file` to your `top module file` (new created file). The `design template file` includes **instantiated PicoBlaze (KCPSM6) and memory space**. You will need to change the **name of memory space** and set `.C_FAMILY` to `S6` and `.C_RAM_SIZE_KWORDS` to `1` as picture shows below.
 
 ![VBVCfH.jpg](https://s2.ax1x.com/2019/06/08/VBVCfH.jpg)
 
-The rest of part in design template file gives an example of how to connect input/output port with PicoBlaze and so on. Modify them with your need. In the example, no read input is needed but only output data and therefore the code can be modified as follows.
+The rest of part in design template file gives an example of how to connect PicoBlaze's input/output and so on. Modify them with your need. In the example, no input but only output is needed and therefore the code can be modified as follows.
 
 ![VBVpkD.jpg](https://s2.ax1x.com/2019/06/08/VBVpkD.jpg)
 
 
-### STEP 4: Simulation with Isim
+### STEP 4:Confirm the Correctness of the Design
 
-Then you will need to run **simulation tools** `Isim` to make sure that the design works correctly. Firstly, you will need to create a `testbench` as following picture shows and **generates the input signals** your top module needed.
+Create a `testbench` and generate some input signals to provide in/out signal for top module as following picture shows.
 
 ![VBVipd.jpg](https://s2.ax1x.com/2019/06/08/VBVipd.jpg)
 
-Select `View` as `Simulation` and run simulation.
+Run **simulation tool** `Isim`. Select `View` as `Simulation` and start the simulation.
 
 ![VBVZ0f.jpg](https://s2.ax1x.com/2019/06/08/VBVZ0f.jpg)
 
-Result is shown. As we can see, output (led) would always generates `10100111` which is the same as we expected. `00000000` is due to the fact that it takes time for processor to calculate the output result. Each instruction in PicoBlaze takes `2 clock cycle` to finish.
+Here is the result. As we can see, output (led) always generate `10100111` which is the same as we expected. `00000000` is due to the fact that it takes time for processor to calculate the output. Each instruction in PicoBlaze takes `2 clock cycle` to finish.
 
 ![VBVF1A.jpg](https://s2.ax1x.com/2019/06/08/VBVF1A.jpg)
 
 
-### STEP 5: Generate Programming File and Download into FPGA Board
+### STEP 5: Generate Bit File and Download into FPGA Board
 
-Once your design works correctly with simulation, you can generate a `programming file` and **download** it into the board. Select `Implementation` view and import `xxx.ucf` file (e.g. `Nexys3_master.ucf` in the example). This file helps you connecting your defined port with the port on the board. Modify `.ucf` file the picture shows. 
+Once your design works correctly with simulation, you can generate a `programming file` and **download** it into the board. 
+
+Select `Implementation` view and import `xxx.ucf` file (`Nexys3_master.ucf` in our example). This file connects your defined port with the port on the board. Modify `.ucf` file as below picture shows. 
 
 ![VBVAXt.jpg](https://s2.ax1x.com/2019/06/08/VBVAXt.jpg)
 
 ![VBVVnP.jpg](https://s2.ax1x.com/2019/06/08/VBVVnP.jpg)
 
-**Double click** `Generate Programming File` and in the end, synthesis tool will generates `.bit` file. Connect the board with USB cable and open `Adept`. Select the `bit file` and click `Program` to download the file into Nexys3 board. LED will light as you desired.
+**Double click** `Generate Programming File` and Synthesis tool will generate `.bit` file. This may take a while. Connect the board with USB cable and open `Adept`. Select the `.bit` and click `Program` to download the file into Nexys3 board. 
+
+After that, you will see LEDs light as you expected.
 
 ![VBVgAO.jpg](https://s2.ax1x.com/2019/06/08/VBVgAO.jpg)
 
