@@ -18,10 +18,10 @@ This tutorial shows how to use Xilinx FPGA (Nexys3 board). In this example, we w
 
 ### REQUIREMENTS
 ```
-**Nexys3:**  FPGA Development Board with Xilinx Spartan-6 FPGA installed
-**ISE:**     IDE tool used to develop FPGA applications
-**Adept:**   Tool to download bit file into FPGA
-**Verilog:** HDL to develop FPGA application
+**Nexys3**:  FPGA Development Board with Xilinx Spartan-6 FPGA installed
+**ISE**:     IDE tool used to develop FPGA applications
+**Adept**:   Tool to download bit file into FPGA
+**Verilog**: HDL to develop FPGA application
 ```
 
 
@@ -40,7 +40,7 @@ After downloaded, open zip file and move into `Verilog folder`. In this folder, 
 
 The following instructions will light LEDs on Nexys3 with the position in 7, 5, 2, 1, 0. Edit and save them as `xxx.psm` file.
 
-**NOTE: ** PicoBlaze instruction set can be found in `KCPSM6_User_Guide`
+**NOTE**: PicoBlaze instruction set can be found in `KCPSM6_User_Guide`
 
 ```
 CONSTANT Acheck, 10100111’b
