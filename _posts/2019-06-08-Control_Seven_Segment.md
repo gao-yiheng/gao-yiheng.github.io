@@ -7,7 +7,6 @@ author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - How To's
     - FPGA
 ---
 

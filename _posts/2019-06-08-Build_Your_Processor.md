@@ -1,24 +1,23 @@
 ---
 layout:     post
-title:      Nexys3 Part III - Build a Microprocessor
+title:      FPGA Part III - Design Your Own Processor
 subtitle:   Build Your Own Processor with Multi-Cycle Machine
 date:       2019-06-08
 author:     yg
 header-img: img/post-bg-5.jpg
 catalog: true
 tags:
-    - How To's
     - FPGA
 ---
 
 
 ### OVERVIEW
-In previous parts, we use PicoBlaze as micro-controller to implement our design. This part will try to **design our own microprocessor** which run on Nexys3. The processor is quite **simple but could handle simple tasks like generating Fibonacci numbers**. Code for implementing the microprocessor is [here](https://github.com/yg9120/Nexys3/tree/master/CreateYourMicroprocessor).
+In part I and II, we used PicoBlaze as micro-controller to implement our design. This part will try to **design our own microprocessor** which runs on Nexys3. This processor is quite **simple but could handle simple tasks like generating Fibonacci numbers**. Code for implementing the microprocessor is [here](https://github.com/yg9120/Nexys3/tree/master/CreateYourMicroprocessor).
 
 
 ### STEP 1: Define Your Own Instruction Set
 
-As mentioned before, the processor is very simple and therefore only supports **limited number of instructions**. The following picture shows the `instruction set` the processor supports and how it coded.
+As mentioned before, the processor is very simple and therefore only supports **limited number of instructions**. The following picture shows the `instruction set` this processor supports and how it coded.
 
 ![VDjRUI.jpg](https://s2.ax1x.com/2019/06/09/VDjRUI.jpg)
 
@@ -33,7 +32,7 @@ Therefore, considering both `system complexity` and `clock speed`, `multi-cycle 
 
 ![VDjd4x.jpg](https://s2.ax1x.com/2019/06/09/VDjd4x.jpg)
 
-The following picture contains more detail about the microprocessor. As we can see, it contains a `PC module`, `Register File`, `ALU Unit` and `Control Unit`. `PC module` responsible for **calculating next address** that microprocessor would fetch from instruction memory. `Register File` includes **16 registers**, and the **size of a register** is `8-bit`. `ALU` in the design would **perform add and subtract operations**. `Control Unit` would **generate control signals** based on current state to control other components.
+The following picture contains more details about the microprocessor. As we can see, it contains a `PC module`, `Register File`, `ALU Unit` and `Control Unit`. `PC module` responsible for **calculating next address** that microprocessor would fetch from instruction memory. `Register File` includes **16 registers**, and the **size of a register** is `8-bit`. `ALU` in the design would **perform add and subtract operations**. `Control Unit` would **generate control signals** based on current state to control other components.
 
 The `control unit` is implemented in `Mealy FSM`. An **instruction requires three to five clock cycles to finish**. The specific clock cycle time depend on instruction. The step an instruction execute is divided into **up five stages**: `Fetch`(instruction fetch), `Decode`(instruction decode), `Execute`(Instruction execute), `Alu`(if it’s ALU-related instruction), `Wback`(write result back to register file). Every control signal is generated based on current state and input (op_code) of control unit.
 
