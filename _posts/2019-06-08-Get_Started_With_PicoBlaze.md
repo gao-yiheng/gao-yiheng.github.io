@@ -18,10 +18,12 @@ This tutorial shows how to use Xilinx FPGA (Nexys3 board). In this example, we w
 
 ### REQUIREMENTS
 ```
-**Nexys3**:  FPGA Development Board with Xilinx Spartan-6 FPGA installed
-**ISE**:     IDE tool used to develop FPGA applications
-**Adept**:   Tool to download bit file into FPGA
-**Verilog**: HDL to develop FPGA application
+-------|-------------------------------------------------------------|
+Nexys3 | FPGA Development Board with Xilinx Spartan-6 FPGA installed |
+ISE    | IDE tool used to develop FPGA applications                  |
+Adept  | Tool to download bit file into FPGA                         |
+Verilog| HDL to develop FPGA application                             |
+-------|-------------------------------------------------------------|
 ```
 
 
