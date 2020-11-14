@@ -15,6 +15,7 @@ tags:
 SVN and Git are both version control tool with some differences: SVN is a centralized version control tool as Git is distributed. More specifically, SVN acts like master-slave model. There will be a server running at somewhere in the world, and developer as a client has to checkout and commit the code from the server. For Git, there is no centralized server to manage the version. Instead, every developer runs Git tool on their device: every developer manage their changes on local environment (by Git) and only 'commit' their changes to remote repo when needed. 
 
 ### Basic Git Command
+```
 | Command                                      |  Comments                                                   |
 |----------------------------------------------|-------------------------------------------------------------|
 | git branch -a                                | check all branches, including remote branches               |
@@ -29,4 +30,4 @@ SVN and Git are both version control tool with some differences: SVN is a centra
 | git checkout -b <branch_name>                | create a new branch AND move to new branch at the same time |
 | git merge <branch_name>                      | merge a branch into current branch                          |
 | git rebase <branch_name>                     | rebase current_branch into top of <branch_name>             |
-
+```
