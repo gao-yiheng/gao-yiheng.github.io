@@ -16,6 +16,7 @@ SVN and Git are both version control tool with some differences: SVN is a centra
 
 ### Basic Git Command
 ```
+|----------------------------------------------|-------------------------------------------------------------|
 | Command                                      |  Comments                                                   |
 |----------------------------------------------|-------------------------------------------------------------|
 | git branch -a                                | check all branches, including remote branches               |
@@ -30,4 +31,5 @@ SVN and Git are both version control tool with some differences: SVN is a centra
 | git checkout -b <branch_name>                | create a new branch AND move to new branch at the same time |
 | git merge <branch_name>                      | merge a branch into current branch                          |
 | git rebase <branch_name>                     | rebase current_branch into top of <branch_name>             |
+|----------------------------------------------|-------------------------------------------------------------|
 ```
