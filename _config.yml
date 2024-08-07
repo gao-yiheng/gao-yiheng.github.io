@@ -5,9 +5,9 @@ header-img: img/post-bg-keybord.jpg
 # email: xxxxxxxx@qq.com
 description: "Used to record what I did in the past"
 keyword: ""
-url: "http://yg9120.github.io"          # your host, for absolute URL
+url: "http://gao-yiheng.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/yg9120/yg9120.github.io.git" # you code repository
+github_repo: "https://github.com/gao-yiheng/gao-yiheng.github.io.git" # you code repository
 
 # Sidebar settings
 #sidebar: true                           # whether or not using Sidebar.
@@ -21,7 +21,7 @@ sidebar-avatar: /img/crayon_shinchan.jpg      # use absolute URL, seeing it's us
 RSS: false
 # weibo_username:     username
 #zhihu_username:     username
-#github_username:    yg9120
+#github_username:    username
 #facebook_username:  username
 #jianshu_username:   username
 #twitter_username:   username
